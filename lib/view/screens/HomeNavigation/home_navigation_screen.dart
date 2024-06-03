@@ -30,7 +30,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     const FeedScreen(),
     const SearchScreen(),
     CreatePostScreen(),
-    ChatListScreen(),
+    const ChatListScreen(),
     ProfileScreen()
   ];
 
@@ -98,6 +98,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
       bool alreadyAsked =
           preferences.getBool(Pref.alreadyAskedForNotification) ?? false;
       if (!alreadyAsked) {
+        
         if (mounted) {
           preferences.setBool(Pref.alreadyAskedForNotification, true);
           showNotificationPermissionDialog(context);
