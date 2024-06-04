@@ -1,11 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wave/controllers/Authentication/user_controller.dart';
 import 'package:wave/data/notification_data.dart';
 import 'package:wave/models/response_model.dart';
 import 'package:wave/models/user_model.dart';
-import 'package:wave/services/notification_service.dart';
 import 'package:wave/utils/constants/custom_colors.dart';
 import 'package:wave/utils/constants/custom_fonts.dart';
 import 'package:wave/utils/constants/custom_icons.dart';

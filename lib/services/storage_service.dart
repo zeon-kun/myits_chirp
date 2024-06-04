@@ -9,7 +9,7 @@ Future<String?> getImageUrl(File image, String location) async {
     final TaskSnapshot taskSnapshot = await uploadTask;
     final url = await taskSnapshot.ref.getDownloadURL();
     return url;
-  } on FirebaseException catch (e) {
+  } on FirebaseException {
     return null;
   }
 }

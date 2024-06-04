@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,7 +52,7 @@ class MoreOptionsForSelfProfile extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.settings_outlined),
           title: Text('Settings',
-          style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
+              style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
           onTap: () {
             //Settings
           },
@@ -61,7 +60,7 @@ class MoreOptionsForSelfProfile extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.block_outlined),
           title: Text('Blocked Contacts',
-          style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
+              style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
           onTap: () {
             //Help
           },
@@ -69,7 +68,7 @@ class MoreOptionsForSelfProfile extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.info_outline),
           title: Text('About',
-          style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
+              style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
           onTap: () {
             //About
           },
@@ -77,7 +76,7 @@ class MoreOptionsForSelfProfile extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.help_outline_outlined),
           title: Text('Help',
-          style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
+              style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
           onTap: () {
             //Help
           },

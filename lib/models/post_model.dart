@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 
 import 'package:wave/models/post_content_model.dart';
 
@@ -37,7 +36,6 @@ class Post {
     String? caption,
     List<dynamic>? mentions,
   }) {
-    
     return Post(
       id: id ?? this.id,
       postList: postList ?? this.postList,

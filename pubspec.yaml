@@ -63,6 +63,9 @@ dependencies:
   timeago: ^3.6.1
   url_launcher: ^6.2.6
   video_player: ^2.8.6
+  flutter_localizations: 
+    sdk: flutter
+  localization: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -73,7 +76,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

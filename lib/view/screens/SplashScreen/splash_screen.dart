@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wave/controllers/Authentication/user_controller.dart';
-import 'package:wave/models/response_model.dart';
 import 'package:wave/utils/constants/custom_fonts.dart';
 import 'package:wave/utils/constants/cutom_logo.dart';
 import 'package:wave/utils/constants/preferences.dart';

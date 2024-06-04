@@ -8,7 +8,6 @@ import 'package:wave/utils/constants/custom_fonts.dart';
 import 'package:wave/utils/constants/custom_icons.dart';
 import 'package:wave/utils/device_size.dart';
 import 'package:wave/view/reusable_components/mention_user_tile.dart';
-import 'package:wave/view/reusable_components/user_container.dart';
 
 class SearchToMention extends StatefulWidget {
   const SearchToMention({super.key});

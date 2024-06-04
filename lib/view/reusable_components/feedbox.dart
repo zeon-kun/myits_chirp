@@ -21,7 +21,6 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:wave/utils/routing.dart';
 import 'package:wave/utils/util_functions.dart';
 import 'package:wave/view/reusable_components/more_option_feed.dart';
-import 'package:wave/view/screens/FeedScreen/list_comment_screen.dart';
 
 class FeedBox extends StatelessWidget {
   final Post post;

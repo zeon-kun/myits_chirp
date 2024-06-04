@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/utils/constants/custom_colors.dart';
-import 'package:wave/utils/constants/custom_icons.dart';
-import 'package:wave/utils/device_size.dart';
 
 import '../../utils/constants/custom_fonts.dart';
 
@@ -104,8 +102,7 @@ class CustomTextBoxForComments extends StatelessWidget {
       //check if imageURLorPath
       if (imageURLorPath is String) {
         if (imageURLorPath.startsWith('http')) {
-          return CachedNetworkImageProvider(
-            imageURLorPath);
+          return CachedNetworkImageProvider(imageURLorPath);
         } else {
           return AssetImage(imageURLorPath);
         }

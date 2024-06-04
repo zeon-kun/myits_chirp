@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart' as fb;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:wave/models/comment_post_model.dart';
@@ -139,7 +138,7 @@ class PostData {
       var res = await Database.getPostLikesDatabase(postId)
           .doc(userId)
           .set(like.toMap());
-      
+
       return CustomResponse(responseStatus: true);
     } on FirebaseException catch (error) {
       return CustomResponse(responseStatus: false, response: error.toString());
