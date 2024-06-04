@@ -1,23 +1,13 @@
 {
   "project_info": {
-<<<<<<< Updated upstream
     "project_number": "89659808714",
     "project_id": "flutter-warp",
     "storage_bucket": "flutter-warp.appspot.com"
-=======
-    "project_number": "637608151880",
-    "project_id": "wave-dev-42598",
-    "storage_bucket": "wave-dev-42598.appspot.com"
->>>>>>> Stashed changes
   },
   "client": [
     {
       "client_info": {
-<<<<<<< Updated upstream
         "mobilesdk_app_id": "1:89659808714:android:0ec3bef0bf48adcf2b0d33",
-=======
-        "mobilesdk_app_id": "1:637608151880:android:f001b8bcc31ab3c19f417d",
->>>>>>> Stashed changes
         "android_client_info": {
           "package_name": "com.starcoding.wave"
         }
@@ -25,11 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-<<<<<<< Updated upstream
           "current_key": "AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI"
-=======
-          "current_key": "AIzaSyDNJosx7KqYLqDSJH9KVpkM4DRArzOnm94"
->>>>>>> Stashed changes
         }
       ],
       "services": {

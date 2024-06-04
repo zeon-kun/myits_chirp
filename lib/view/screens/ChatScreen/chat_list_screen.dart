@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wave/services/chat_services.dart'; // Assume this imports the ChatService and Chat classes
+import 'chat_screen.dart';
 
 class ChatListScreen extends StatelessWidget {
   final ChatService _chatService = ChatService();
@@ -31,7 +32,16 @@ class ChatListScreen extends StatelessWidget {
                   subtitle: Text(chat.lastMessage),
                   trailing: Text(_formatTimestamp(chat.timestamp)),
                   onTap: () {
-                    // Handle chat item tap
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatScreen(
+                          chatId:
+                              chat.id, // Make sure Chat class has an id field
+                          chatName: chat.name,
+                        ),
+                      ),
+                    );
                   },
                 );
               },
