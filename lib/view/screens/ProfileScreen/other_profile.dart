@@ -14,6 +14,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wave/utils/routing.dart';
 import 'package:wave/models/notification_model.dart' as not;
 import 'package:wave/view/screens/ProfileScreen/more_options_other_profile.dart';
+import 'package:wave/services/chat_services.dart';
+import 'package:wave/view/screens/ChatScreen/chat_list_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:wave/view/screens/ChatScreen/chat_screen.dart';
 
 class OtherProfile extends StatefulWidget {
   final String otherUserId;
@@ -31,6 +35,7 @@ class _OtherProfileState extends State<OtherProfile> {
 
   @override
   Widget build(BuildContext context) {
+    final ChatService _chatService = ChatService();
     return RefreshIndicator(
       color: CustomColor.primaryColor,
       onRefresh: () => _handleRefresh(context),
@@ -262,6 +267,47 @@ class _OtherProfileState extends State<OtherProfile> {
                         ),
                         color: CustomColor.primaryColor.withOpacity(0.8),
                         child: Text('${otherUser.following.length} Following',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: CustomFont.poppins,
+                                fontSize: 13)),
+                      ),
+                      MaterialButton(
+                        height: displayHeight(context) * 0.045,
+                        onPressed: () async {
+                          QuerySnapshot snapshot = await _chatService
+                              .checkIfChatExists(otherUser.name);
+                          if (snapshot.docs.isNotEmpty) {
+                            // Chat exists, navigate to ChatScreen
+                            var chatDoc = snapshot.docs.first;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatScreen(
+                                  chatId: chatDoc.id,
+                                  chatName: otherUser.name,
+                                ),
+                              ),
+                            );
+                          } else {
+                            // Chat does not exist, create a new chat
+                            await _chatService.addChat(
+                                otherUser.name,
+                                otherUser.id,
+                                'New chat started with ${otherUser.name}');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChatListScreen()),
+                            );
+                          }
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          // Border color
+                        ),
+                        color: Colors.blue.withOpacity(0.8),
+                        child: Text('Chat',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: CustomFont.poppins,

@@ -14,24 +14,34 @@ class ChatService {
             .toList());
   }
 
-  Future<void> addChat(String name, String lastMessage) async {
+  Future<void> addChat(
+      String name, String participant, String lastMessage) async {
     await _db.collection('chats').add({
       'name': name,
+      'participant': participant,
       'lastMessage': lastMessage,
       'timestamp': FieldValue.serverTimestamp(),
     });
+  }
+
+  Future<QuerySnapshot> checkIfChatExists(String otherUserId) {
+    return _db
+        .collection('chats')
+        .where('participant', arrayContains: [otherUserId]).get();
   }
 }
 
 class Chat {
   final String id;
   final String name;
+  final String participant;
   final String lastMessage;
   final Timestamp timestamp;
 
   Chat(
       {required this.id,
       required this.name,
+      required this.participant,
       required this.lastMessage,
       required this.timestamp});
 
@@ -39,6 +49,7 @@ class Chat {
     return Chat(
       id: id,
       name: data['name'] ?? '',
+      participant: data['participant'] ?? '',
       lastMessage: data['lastMessage'] ?? '',
       timestamp: data['timestamp'],
     );
