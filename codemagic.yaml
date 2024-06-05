@@ -1,0 +1,27 @@
+workflows:
+  build_android:
+    name: Build Android APK
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'prod'
+          include: true
+          source: true
+    environment:
+      flutter: stable
+      java: "17"
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+    publishing:
+      email:
+        recipients:
+          - alphaisgod1@gmail.com
+          - skshrutikumari46@gmail.com
+        notify:
+          success: true
