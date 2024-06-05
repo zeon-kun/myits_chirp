@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "89659808714",
+    "project_id": "flutter-warp",
+    "storage_bucket": "flutter-warp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89659808714:android:f0eb2c113277ed552b0d33",
+        "android_client_info": {
+          "package_name": "com.flutterwarp.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89659808714:android:0ec3bef0bf48adcf2b0d33",
+        "android_client_info": {
+          "package_name": "com.starcoding.wave"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
