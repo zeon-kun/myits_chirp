@@ -17,6 +17,7 @@ import 'package:wave/view/screens/CreatePostScreen/create_post_screen.dart';
 import 'package:wave/view/screens/FeedScreen/feed_screen.dart';
 import 'package:wave/view/screens/ProfileScreen/profile_screen.dart';
 import 'package:wave/view/screens/SearchScreen/search_screen.dart';
+import 'package:wave/view/screens/SpaceScreen/space_screen.dart';
 
 class HomeNavigationScreen extends StatefulWidget {
   HomeNavigationScreen({super.key});
@@ -31,6 +32,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     const SearchScreen(),
     CreatePostScreen(),
     ChatListScreen(),
+    SpaceScreen(),
     ProfileScreen()
   ];
 
@@ -161,104 +163,124 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
       bottomNavigationBar: Consumer<HomeNavController>(
         builder: (context, homeNavController, child) {
           return BottomNavigationBar(
-              key: const Key(Keys.keyForBottomNavButton),
-              onTap: (newScreenIndex) {
-                if (newScreenIndex == 2) {
-                  Get.toNamed(AppRoutes.createNewPostScreen);
-                } else {
-                  Get.printInfo(info: "Selected $newScreenIndex index");
-                  homeNavController.setCurrentScreenIndex(newScreenIndex);
-                }
-              },
-              elevation: 0,
-              currentIndex: homeNavController.currentScreenIndex,
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.white,
-              showUnselectedLabels: false,
-              selectedItemColor: CustomColor.primaryColor,
-              showSelectedLabels: true,
-              selectedLabelStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: CustomFont.poppins,
-                  letterSpacing: -0.1,
-                  fontSize: 10.5),
-              // iconSize: 25,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Image.asset(
-                      (homeNavController.currentScreenIndex == 0)
-                          ? CustomIcon.exploreFullIcon
-                          : CustomIcon.exploreIcon,
-                      key: const Key(Keys.keyForExploreIcon),
-                      color: (homeNavController.currentScreenIndex == 0)
-                          ? CustomColor.primaryColor
-                          : null,
-                      height: bottomNavBarItemHeight,
-                    ),
+            key: const Key(Keys.keyForBottomNavButton),
+            onTap: (newScreenIndex) {
+              if (newScreenIndex == 2) {
+                Get.toNamed(AppRoutes.createNewPostScreen);
+              } else {
+                Get.printInfo(info: "Selected $newScreenIndex index");
+                homeNavController.setCurrentScreenIndex(newScreenIndex);
+              }
+            },
+            elevation: 0,
+            currentIndex: homeNavController.currentScreenIndex,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.blue[900],
+            showUnselectedLabels: false,
+            selectedItemColor: CustomColor.primaryColor,
+            showSelectedLabels: true,
+            selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: CustomFont.poppins,
+              letterSpacing: -0.1,
+              fontSize: 10.5,
+            ),
+            items: [
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Image.asset(
+                    (homeNavController.currentScreenIndex == 0)
+                        ? CustomIcon.exploreIcon
+                        : CustomIcon.exploreIcon,
+                    key: const Key(Keys.keyForExploreIcon),
+                    color: (homeNavController.currentScreenIndex == 0)
+                        ? CustomColor.primaryColor
+                        : null,
+                    height: bottomNavBarItemHeight,
                   ),
-                  label: "Explore",
                 ),
-                BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Image.asset(
-                        (homeNavController.currentScreenIndex == 1)
-                            ? CustomIcon.searchFullIcon
-                            : CustomIcon.searchIcon,
-                        key: const Key(Keys.keyForSearchIcon),
-                        color: (homeNavController.currentScreenIndex == 1)
-                            ? CustomColor.primaryColor
-                            : null,
-                        height: bottomNavBarItemHeight,
-                      ),
-                    ),
-                    label: "Search"),
-                BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Image.asset(
-                        CustomIcon.addPostIcon,
-                        key: const Key(Keys.keyForAddPostIcon),
-                        color: (homeNavController.currentScreenIndex == 2)
-                            ? CustomColor.primaryColor
-                            : null,
-                        height: bottomNavBarItemHeight,
-                      ),
-                    ),
-                    label: "New"),
-                BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Image.asset(
-                        (homeNavController.currentScreenIndex == 3)
-                            ? CustomIcon.chatFullIcon
-                            : CustomIcon.chatIcon,
-                        key: const Key(Keys.keyForChatIcon),
-                        color: (homeNavController.currentScreenIndex == 3)
-                            ? CustomColor.primaryColor
-                            : null,
-                        height: bottomNavBarItemHeight,
-                      ),
-                    ),
-                    label: "Chat"),
-                BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Image.asset(
-                        (homeNavController.currentScreenIndex == 4)
-                            ? CustomIcon.profileFullIcon
-                            : CustomIcon.profileIcon,
-                        key: const Key(Keys.keyForProfileIcon),
-                        color: (homeNavController.currentScreenIndex == 4)
-                            ? CustomColor.primaryColor
-                            : null,
-                        height: bottomNavBarItemHeight,
-                      ),
-                    ),
-                    label: "Profile")
-              ]);
+                label: "Explore",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Image.asset(
+                    (homeNavController.currentScreenIndex == 1)
+                        ? CustomIcon.searchIcon
+                        : CustomIcon.searchIcon,
+                    key: const Key(Keys.keyForSearchIcon),
+                    color: (homeNavController.currentScreenIndex == 1)
+                        ? CustomColor.primaryColor
+                        : null,
+                    height: bottomNavBarItemHeight,
+                  ),
+                ),
+                label: "Search",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Image.asset(
+                    CustomIcon.addPostIcon,
+                    key: const Key(Keys.keyForAddPostIcon),
+                    color: (homeNavController.currentScreenIndex == 2)
+                        ? CustomColor.primaryColor
+                        : null,
+                    height: bottomNavBarItemHeight,
+                  ),
+                ),
+                label: "New",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Image.asset(
+                    (homeNavController.currentScreenIndex == 3)
+                        ? CustomIcon.chatIcon
+                        : CustomIcon.chatIcon,
+                    key: const Key(Keys.keyForChatIcon),
+                    color: (homeNavController.currentScreenIndex == 3)
+                        ? CustomColor.primaryColor
+                        : null,
+                    height: bottomNavBarItemHeight,
+                  ),
+                ),
+                label: "Chat",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Icon(
+                    Icons.travel_explore,
+                    key: const Key(Keys.keyForSearchIcon),
+                    color: (homeNavController.currentScreenIndex == 4)
+                        ? CustomColor.primaryColor
+                        : null,
+                    size: bottomNavBarItemHeight,
+                  ),
+                ),
+                label: "Space",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Image.asset(
+                    (homeNavController.currentScreenIndex == 5)
+                        ? CustomIcon.profileIcon
+                        : CustomIcon.profileIcon,
+                    key: const Key(Keys.keyForProfileIcon),
+                    color: (homeNavController.currentScreenIndex == 5)
+                        ? CustomColor.primaryColor
+                        : null,
+                    height: bottomNavBarItemHeight,
+                  ),
+                ),
+                label: "Profile",
+              ),
+            ],
+          );
+
         },
       ),
       body: Consumer<HomeNavController>(

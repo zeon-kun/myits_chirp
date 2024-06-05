@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomColor {
-  static Color primaryColor = Color(0xfbA40606).withOpacity(0.7);
+  static Color primaryColor = Color(0x99FFFFFF);
   static Color primaryGradient1 = Color(0xfbFF4433);
   static Color primaryGradient2 = Color(0xfbE30B5C);
   static Color authTextBoxColor = Color(0xfbFAFAFBFF);
