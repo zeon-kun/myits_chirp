@@ -24,7 +24,7 @@ class _FeedViewScreenState extends State<FeedViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Instagram Stories'),
+        title: Text('My ITS Chirp Stories'),
       ),
       body: FutureBuilder(
         future: Provider.of<StoryProvider>(context, listen: false).fetchAndSetStories(),
