@@ -3,6 +3,7 @@ import 'package:wave/view/screens/Authentication/login_screen.dart';
 import 'package:wave/view/screens/Authentication/register_screen.dart';
 import 'package:wave/view/screens/CreatePostScreen/create_post_screen.dart';
 import 'package:wave/view/screens/CreatePostScreen/search_to_mention.dart';
+import 'package:wave/view/screens/FeedScreen/feed_post_screen.dart';
 import 'package:wave/view/screens/FeedScreen/list_comment_screen.dart';
 import 'package:wave/view/screens/HomeNavigation/home_navigation_screen.dart';
 import 'package:wave/view/screens/NotificationScreen/notification_screen.dart';
@@ -10,6 +11,8 @@ import 'package:wave/view/screens/ProfileScreen/edit_profile_screen.dart';
 import 'package:wave/view/screens/ProfileScreen/list_users.dart';
 import 'package:wave/view/screens/ProfileScreen/profile_screen.dart';
 import 'package:wave/view/screens/SplashScreen/splash_screen.dart';
+
+import '../view/screens/FeedScreen/feed_view_screen.dart';
 
 class AppRoutes {
   static const String loginScreen = '/login';
@@ -23,6 +26,8 @@ class AppRoutes {
   static const String listUsersScreen = '/listUsersScreen';
   static const String listCommentsScreen = '/listCommentsScreen';
   static const String notificationScreen = '/notificationScreen';
+  static const String feedPostScreen = '/feedPostScreen';
+  static const String feedViewScreen = '/feedViewScreen';
 
   static final List<GetPage> routes = [
     GetPage(
@@ -55,5 +60,15 @@ class AppRoutes {
         name: notificationScreen,
         page: () => NotificationScreen(),
         transition: Transition.leftToRight),
+    GetPage(
+        name: feedPostScreen,
+        page: () => FeedPostScreen(),
+        transition: Transition.leftToRight,
+    ),
+    GetPage(
+      name: feedViewScreen,
+      page: () => FeedViewScreen(),
+      transition: Transition.leftToRight,
+    ),
   ];
 }

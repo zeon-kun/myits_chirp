@@ -7,8 +7,11 @@ import 'package:wave/controllers/Authentication/user_controller.dart';
 import 'package:wave/controllers/HomeNavController/home_nav_controller.dart';
 import 'package:wave/controllers/PostController/create_post_controller.dart';
 import 'package:wave/controllers/PostController/feed_post_controller.dart';
+import 'package:wave/data/feed_provider.dart';
 import 'package:wave/utils/routing.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 // Background message handler
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -49,6 +52,9 @@ class Wave extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => FeedPostController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StoryProvider(),
         ),
       ],
       child: GetMaterialApp(

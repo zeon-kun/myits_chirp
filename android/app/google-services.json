@@ -1,26 +1,79 @@
 {
   "project_info": {
-    "project_number": "89659808714",
-    "project_id": "flutter-warp",
-    "storage_bucket": "flutter-warp.appspot.com"
+    "project_number": "106694011805",
+    "project_id": "twitter-clone-37d08",
+    "storage_bucket": "twitter-clone-37d08.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:89659808714:android:0ec3bef0bf48adcf2b0d33",
+        "mobilesdk_app_id": "1:106694011805:android:65a4caac98e4e30ba51d74",
         "android_client_info": {
           "package_name": "com.starcoding.wave"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "106694011805-qmq2br5m27ksgs3rl3at2kld5j0kjmtf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI"
+          "current_key": "AIzaSyBlMvq7xkAruLsMz1YJQGxtKku5cbApgiw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106694011805-qmq2br5m27ksgs3rl3at2kld5j0kjmtf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106694011805-ff3ecp8qddjpdntelc0vd1kana6h6bh3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.thealphamerc.flutterTwitterClone"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106694011805:android:377a339106b6fc89a51d74",
+        "android_client_info": {
+          "package_name": "com.thealphamerc.flutter_twitter_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106694011805-qmq2br5m27ksgs3rl3at2kld5j0kjmtf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlMvq7xkAruLsMz1YJQGxtKku5cbApgiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106694011805-qmq2br5m27ksgs3rl3at2kld5j0kjmtf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "106694011805-ff3ecp8qddjpdntelc0vd1kana6h6bh3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.thealphamerc.flutterTwitterClone"
+              }
+            }
+          ]
         }
       }
     }

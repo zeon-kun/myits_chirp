@@ -16,6 +16,7 @@ import 'package:wave/utils/enums.dart';
 import 'package:wave/utils/routing.dart';
 import 'package:wave/view/reusable_components/feedbox.dart';
 import 'package:wave/models/notification_model.dart' as notification;
+import 'package:wave/view/screens/FeedScreen/feed_post_screen.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({Key? key});
@@ -101,34 +102,46 @@ class FeedScreen extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Container(
                   padding: const EdgeInsets.only(left: 14.0, right: 8, top: 2),
-                  // color: Colors.amber.shade100,
+                  // color: Colors.amber,
                   height: displayHeight(context) * 0.12,
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InkWell(
-                        onTap: () async {},
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              radius: 30,
-                              backgroundImage:
-                                  AssetImage(CustomIcon.addStoryIcon),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "You",
-                              style: TextStyle(
-                                  fontFamily: CustomFont.poppins, fontSize: 10),
-                            )
-                          ],
+                      Container(
+                        // color: Colors.red,
+                        child: InkWell(
+                          onTap: () {
+
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.feedPostScreen);
+                                  // Navigator.pushNamed(context,
+                                  //     FeedPostScreen.routeName);
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  radius: 30,
+                                  backgroundImage:
+                                      AssetImage(CustomIcon.addStoryIcon),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                "You",
+                                style: TextStyle(
+                                    fontFamily: CustomFont.poppins, fontSize: 10),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(
@@ -144,9 +157,14 @@ class FeedScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: Colors.blue.shade100,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.feedViewScreen);
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: Colors.blue.shade100,
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 2,
