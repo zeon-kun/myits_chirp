@@ -200,7 +200,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
                     height: bottomNavBarItemHeight,
                   ),
                 ),
-                label: "Explore",
+                label: "Home",
               ),
               BottomNavigationBarItem(
                 icon: Padding(
@@ -221,13 +221,13 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Image.asset(
-                    CustomIcon.addPostIcon,
+                  child: Icon(
+                    Icons.add,
                     key: const Key(Keys.keyForAddPostIcon),
                     color: (homeNavController.currentScreenIndex == 2)
                         ? CustomColor.primaryColor
                         : null,
-                    height: bottomNavBarItemHeight,
+                    size: bottomNavBarItemHeight,
                   ),
                 ),
                 label: "New",

@@ -14,7 +14,6 @@ import 'package:wave/utils/constants/custom_icons.dart';
 import 'package:wave/utils/device_size.dart';
 import 'package:wave/utils/enums.dart';
 import 'package:wave/utils/routing.dart';
-import 'package:wave/view/screens/CreatePostScreen/add_image_for_post_box.dart';
 
 class CreatePostScreen extends StatelessWidget {
   CreatePostScreen({super.key});
@@ -55,19 +54,9 @@ class CreatePostScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Placeholder for selected media files
-                      AddImageForPostBox(postController: postController),
+                      // AddImageForPostBox(postController: postController),
                       const SizedBox(
                         height: 20,
-                      ),
-                      Text(
-                        "Caption",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: CustomFont.poppins,
-                            fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -86,127 +75,16 @@ class CreatePostScreen extends StatelessWidget {
                           decoration: InputDecoration(
                               hintStyle: TextStyle(
                                   fontFamily: CustomFont.poppins,
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                   fontSize: 14),
                               border: InputBorder.none,
-                              hintText: "Tell us about your new post !!"),
+                              hintText: "What's happening?"),
                         ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
 
-                      Text(
-                        "Mention People",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: CustomFont.poppins,
-                            fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () =>
-                            Get.toNamed(AppRoutes.searchToMentionScreen),
-                        child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 4),
-                            width: double.infinity,
-                            height: displayHeight(context) * 0.08,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              border: Border.all(
-                                  color: CustomColor.authTextBoxBorderColor),
-                              color: CustomColor.primaryBackGround,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(Icons.search),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Search People",
-                                      style: TextStyle(
-                                          fontFamily: CustomFont.poppins,
-                                          color: Colors.black,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                                const Icon(Icons.arrow_right)
-                              ],
-                            )),
-                      ),
-
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Visibility(
-                        visible: postController.mentionedUsers.isNotEmpty,
-                        child: Container(
-                          // color: Colors.yellow.shade100,
-                          height: displayHeight(context) * 0.12,
-                          width: double.infinity,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: postController.mentionedUsers.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              User user = postController.mentionedUsers[index];
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        (user.displayPicture != null &&
-                                                user.displayPicture!.isNotEmpty)
-                                            ? NetworkImage(user.displayPicture!)
-                                            : null,
-                                    radius: 28,
-                                    child: user.displayPicture == null ||
-                                            user.displayPicture!.isEmpty
-                                        ? const Icon(Icons.person)
-                                        : null,
-                                  ),
-                                  // ignore: prefer_const_constructors
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        user.username,
-                                        style: TextStyle(
-                                            fontFamily: CustomFont.poppins,
-                                            fontSize: 11,
-                                            letterSpacing: 0.1),
-                                      ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
-                                      Visibility(
-                                          visible: user.verified,
-                                          child: Image.asset(
-                                            CustomIcon.verifiedIcon,
-                                            height: 12,
-                                          ))
-                                    ],
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 50,
-                      ),
                       Center(
                         child: SizedBox(
                           width: displayWidth(context) * 0.8,
@@ -245,7 +123,6 @@ class CreatePostScreen extends StatelessWidget {
                                   },
                                 );
 
-                               
                               } else {
                                 Get.showSnackbar(GetSnackBar(
                                   backgroundColor: CustomColor.errorColor,
@@ -279,7 +156,7 @@ class CreatePostScreen extends StatelessWidget {
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontFamily: CustomFont.poppins,
-                                            color: Colors.white),
+                                            color: Colors.blue),
                                       ),
                                     ],
                                   ),
