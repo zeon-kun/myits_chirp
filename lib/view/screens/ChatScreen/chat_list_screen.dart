@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wave/services/chat_services.dart'; // Assume this imports the ChatService and Chat classes
 import 'chat_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatListScreen extends StatelessWidget {
   final ChatService _chatService = ChatService();
@@ -13,7 +14,7 @@ class ChatListScreen extends StatelessWidget {
         title: Text('Chat List'),
       ),
       body: StreamBuilder<List<Chat>>(
-        stream: _chatService.getChats(),
+        stream: _chatService.getChats(FirebaseAuth.instance.currentUser!.uid),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

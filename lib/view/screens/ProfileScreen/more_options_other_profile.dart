@@ -53,54 +53,7 @@ class MoreOptionForOtherProfile extends StatelessWidget {
             //Cancel Functionalities
           },
         ),
-        ListTile(
-            leading: Icon(Icons.chat),
-            title: Text('Chat',
-                style: TextStyle(fontFamily: CustomFont.poppins, fontSize: 14)),
-            onTap: () async {
-              // Show a dialog to get chat details
-              String name = await _getChatName(context);
-              if (name.isNotEmpty) {
-                await _chatService.addChat(name, 'New chat started');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChatListScreen()),
-                );
-              }
-            })
       ],
     ));
   }
-}
-
-Future<String> _getChatName(BuildContext context) async {
-  TextEditingController _controller = TextEditingController();
-
-  return await showDialog<String>(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Enter Chat Name'),
-            content: TextField(
-              controller: _controller,
-              decoration: InputDecoration(hintText: 'Chat Name'),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop('');
-                },
-                child: Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(_controller.text);
-                },
-                child: Text('Add'),
-              ),
-            ],
-          );
-        },
-      ) ??
-      '';
 }
