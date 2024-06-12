@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../models/space_model.dart';
 
 class SpaceService {
   final CollectionReference spaces = FirebaseFirestore.instance.collection('spaces');
@@ -8,6 +9,7 @@ class SpaceService {
       'space': spaceName,
       'space_desc': spaceDescription,
       'timestamp': Timestamp.now(),
+      'followers': 0, // Initial followers count
     });
   }
 
@@ -25,5 +27,26 @@ class SpaceService {
 
   Future<void> deleteSpace(String spaceId) {
     return spaces.doc(spaceId).delete();
+  }
+
+  Future<Space> getSpaceById(String spaceId) async {
+    DocumentSnapshot doc = await spaces.doc(spaceId).get();
+    if (doc.exists) {
+      return Space.fromDocument(doc);
+    } else {
+      throw Exception('Space not found');
+    }
+  }
+
+    Future<void> followSpace(String spaceId, String userId) async {
+    await spaces.doc(spaceId).update({
+      'followers': FieldValue.arrayUnion([userId]),
+    });
+  }
+
+  Future<void> unfollowSpace(String spaceId, String userId) async {
+    await spaces.doc(spaceId).update({
+      'followers': FieldValue.arrayRemove([userId]),
+    });
   }
 }

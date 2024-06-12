@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -50,20 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBlMvq7xkAruLsMz1YJQGxtKku5cbApgiw',
-    appId: '1:106694011805:android:65a4caac98e4e30ba51d74',
-    messagingSenderId: '106694011805',
-    projectId: 'twitter-clone-37d08',
-    storageBucket: 'twitter-clone-37d08.appspot.com',
+    apiKey: 'AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI',
+    appId: '1:89659808714:android:0ec3bef0bf48adcf2b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    storageBucket: 'flutter-warp.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBDDvZd2ihpuT9v6Hlilmv3v1aPMp6hiys',
-    appId: '1:106694011805:ios:7c186d96b1647667a51d74',
-    messagingSenderId: '106694011805',
-    projectId: 'twitter-clone-37d08',
-    storageBucket: 'twitter-clone-37d08.appspot.com',
-    iosClientId: '106694011805-j640l1djhlnde5horgkptd6q8gnr4csh.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCePwnxAx2VmkjGdbmMcuVqfAlrxUb0EXg',
+    appId: '1:89659808714:ios:435314ff2e488c292b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    storageBucket: 'flutter-warp.appspot.com',
+    iosClientId: '89659808714-n8duhjbsrbhm1k0kcci9uc9usn715tei.apps.googleusercontent.com',
     iosBundleId: 'com.example.wave',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAK-B9ph1r0uDTugVc9E1dojToeqYs3XS8',
+    appId: '1:89659808714:web:1b508bc67a9c8a9f2b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    authDomain: 'flutter-warp.firebaseapp.com',
+    storageBucket: 'flutter-warp.appspot.com',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCePwnxAx2VmkjGdbmMcuVqfAlrxUb0EXg',
+    appId: '1:89659808714:ios:210ff44ba2f660c32b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    storageBucket: 'flutter-warp.appspot.com',
+    iosClientId: '89659808714-odcqaavhh9vgrq9kgl3lh5e0qbcug1cq.apps.googleusercontent.com',
+    iosBundleId: 'com.example.myitsChirp',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAK-B9ph1r0uDTugVc9E1dojToeqYs3XS8',
+    appId: '1:89659808714:web:40900363213941a22b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    authDomain: 'flutter-warp.firebaseapp.com',
+    storageBucket: 'flutter-warp.appspot.com',
+  );
+
 }
