@@ -31,13 +31,13 @@ dependencies:
   badges: ^3.1.2
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
-  cloud_firestore: ^4.17.3
+  cloud_firestore: ^4.17.5
   comment_box: ^0.0.18
   cupertino_icons: ^1.0.6
   custom_refresh_indicator: ^3.1.0
   device_info_plus: ^10.1.0
   firebase_auth: ^4.19.5
-  firebase_core: ^2.31.0
+  firebase_core: ^2.32.0
   firebase_messaging: ^14.9.3
   firebase_storage: ^11.7.5
   flutter:

@@ -29,7 +29,7 @@ class FeedScreen extends StatelessWidget {
               SliverAppBar(
                 backgroundColor: CustomColor.primaryBackGround,
                 title: Text(
-                  "MyITS Chirp", // Adjust the title as needed
+                  "MyITS Chirp",
                   style: TextStyle(fontFamily: CustomFont.alex, fontSize: 40),
                 ),
                 floating: true,
@@ -58,7 +58,7 @@ class FeedScreen extends StatelessWidget {
                             children: [
                               Container(
                                 padding: const EdgeInsets.only(left: 14.0, right: 8, top: 2),
-                                // color: Colors.amber,
+
                                 height: displayHeight(context) * 0.12,
                                 width: double.infinity,
                                 child: Row(
@@ -66,7 +66,7 @@ class FeedScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
-                                      // color: Colors.red,
+
                                       child: InkWell(
                                         onTap: () {
 
