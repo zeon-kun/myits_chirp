@@ -69,9 +69,11 @@ class _FeedPostScreenState extends State<FeedPostScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Story'),
+        backgroundColor: Colors.blue[800],
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.save),
+            color: Colors.white70,
             onPressed: _saveForm,
           ),
         ],

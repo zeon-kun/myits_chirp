@@ -50,20 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBlMvq7xkAruLsMz1YJQGxtKku5cbApgiw',
-    appId: '1:106694011805:android:65a4caac98e4e30ba51d74',
-    messagingSenderId: '106694011805',
-    projectId: 'twitter-clone-37d08',
-    storageBucket: 'twitter-clone-37d08.appspot.com',
+    apiKey: 'AIzaSyBVPzY3v5JFhLvessoG_d0zTig8HQFKqcI',
+    appId: '1:89659808714:android:0ec3bef0bf48adcf2b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    storageBucket: 'flutter-warp.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBDDvZd2ihpuT9v6Hlilmv3v1aPMp6hiys',
-    appId: '1:106694011805:ios:7c186d96b1647667a51d74',
-    messagingSenderId: '106694011805',
-    projectId: 'twitter-clone-37d08',
-    storageBucket: 'twitter-clone-37d08.appspot.com',
-    iosClientId: '106694011805-j640l1djhlnde5horgkptd6q8gnr4csh.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCePwnxAx2VmkjGdbmMcuVqfAlrxUb0EXg',
+    appId: '1:89659808714:ios:435314ff2e488c292b0d33',
+    messagingSenderId: '89659808714',
+    projectId: 'flutter-warp',
+    storageBucket: 'flutter-warp.appspot.com',
+    iosClientId: '89659808714-n8duhjbsrbhm1k0kcci9uc9usn715tei.apps.googleusercontent.com',
     iosBundleId: 'com.example.wave',
   );
+
 }
