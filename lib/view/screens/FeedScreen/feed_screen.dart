@@ -7,6 +7,7 @@ import 'package:wave/utils/constants/custom_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:wave/models/post_model.dart';
 import 'package:wave/utils/constants/custom_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../utils/constants/custom_icons.dart';
 import '../../../utils/device_size.dart';
@@ -173,6 +174,22 @@ class FeedScreen extends StatelessWidget {
                                                   Text(
                                                     DateFormat.yMMMMd().add_jm().format(post.createdAt),
                                                   ),
+                                                  FutureBuilder<bool>(
+                                                    future: feedController.isUserPost(post.id, FirebaseAuth.instance.currentUser!.uid),
+                                                    builder: (context, userPostSnapshot) {
+                                                      if (userPostSnapshot.connectionState == ConnectionState.waiting) {
+                                                        return CircularProgressIndicator();
+                                                      }
+                                                       else if (userPostSnapshot.data == true) {
+                                                        return IconButton(
+                                                          onPressed: () => feedController.deletePost(post.id),
+                                                          icon: const Icon(Icons.delete),
+                                                        );
+                                                      } else {
+                                                        return SizedBox.shrink(); // Return an empty widget if not the user's post
+                                                      }
+                                                    },
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -181,6 +198,7 @@ class FeedScreen extends StatelessWidget {
                                       }
                                     },
                                   );
+
                                 },
                               ),
                             ],
