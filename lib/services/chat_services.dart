@@ -3,9 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Stream<List<Chat>> getChats() {
+  Stream<List<Chat>> getChats(String userId) {
     return _db
         .collection('chats')
+        .where('participant', arrayContains: userId)
         .orderBy('timestamp', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs
@@ -14,11 +15,11 @@ class ChatService {
             .toList());
   }
 
-  Future<void> addChat(
-      String name, String participant, String lastMessage) async {
+  Future<void> addChat(String name, String participant1, String participant2,
+      String lastMessage) async {
     await _db.collection('chats').add({
       'name': name,
-      'participant': participant,
+      'participant': {participant1, participant2},
       'lastMessage': lastMessage,
       'timestamp': FieldValue.serverTimestamp(),
     });
@@ -27,29 +28,33 @@ class ChatService {
   Future<QuerySnapshot> checkIfChatExists(String otherUserId) {
     return _db
         .collection('chats')
-        .where('participant', arrayContains: [otherUserId]).get();
+        .where('participant', arrayContains: otherUserId)
+        .get();
   }
 }
 
 class Chat {
   final String id;
   final String name;
-  final String participant;
+  final List<String> participant;
   final String lastMessage;
   final Timestamp timestamp;
 
-  Chat(
-      {required this.id,
-      required this.name,
-      required this.participant,
-      required this.lastMessage,
-      required this.timestamp});
+  Chat({
+    required this.id,
+    required this.name,
+    required this.participant,
+    required this.lastMessage,
+    required this.timestamp,
+  });
 
   factory Chat.fromMap(Map<String, dynamic> data, String id) {
+    var participants =
+        List<String>.from(data['participant']); // Cast to List<String>
     return Chat(
       id: id,
       name: data['name'] ?? '',
-      participant: data['participant'] ?? '',
+      participant: participants,
       lastMessage: data['lastMessage'] ?? '',
       timestamp: data['timestamp'],
     );

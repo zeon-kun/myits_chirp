@@ -276,7 +276,7 @@ class _OtherProfileState extends State<OtherProfile> {
                         height: displayHeight(context) * 0.045,
                         onPressed: () async {
                           QuerySnapshot snapshot = await _chatService
-                              .checkIfChatExists(otherUser.name);
+                              .checkIfChatExists(otherUser.id);
                           if (snapshot.docs.isNotEmpty) {
                             // Chat exists, navigate to ChatScreen
                             var chatDoc = snapshot.docs.first;
@@ -291,9 +291,12 @@ class _OtherProfileState extends State<OtherProfile> {
                             );
                           } else {
                             // Chat does not exist, create a new chat
+                            String chatname =
+                                '${otherUser.name} with ${userDataController.user!.name}';
                             await _chatService.addChat(
-                                otherUser.name,
+                                chatname,
                                 otherUser.id,
+                                userDataController.user!.id,
                                 'New chat started with ${otherUser.name}');
                             Navigator.push(
                               context,
