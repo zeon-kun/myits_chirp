@@ -17,7 +17,7 @@ import 'package:wave/view/screens/CreatePostScreen/create_post_screen.dart';
 import 'package:wave/view/screens/FeedScreen/feed_screen.dart';
 import 'package:wave/view/screens/ProfileScreen/profile_screen.dart';
 import 'package:wave/view/screens/SearchScreen/search_screen.dart';
-import 'package:wave/view/screens/SpaceScreen/space_screen.dart';
+import 'package:wave/view/screens/SpaceScreen/space_list.dart';
 
 class HomeNavigationScreen extends StatefulWidget {
   HomeNavigationScreen({super.key});
@@ -32,7 +32,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
     const SearchScreen(),
     CreatePostScreen(),
     ChatListScreen(),
-    SpaceScreen(),
+    SpaceListScreen(),
     ProfileScreen()
   ];
 

@@ -33,4 +33,21 @@ class FeedPostController extends ChangeNotifier {
     }
   }
 
+  Future<void> deletePost(String userId) async{
+    return postsCollection.doc(userId).delete();
+  }
+
+  Future<bool> isUserPost(String postid, String userId) async{
+
+      DocumentSnapshot postSnapshot = await postsCollection.doc(postid).get();
+      if (postSnapshot.exists) {
+        Map<String, dynamic> postData = postSnapshot.data() as Map<String, dynamic>;
+        if (postData['userId'] == userId) {
+          return true;
+        }
+      }
+      return false;
+
+  }
+
 }

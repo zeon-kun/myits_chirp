@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatScreen extends StatelessWidget {
   final String chatId;
   final String chatName;
 
   ChatScreen({required this.chatId, required this.chatName});
+
+  final String userId = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,38 @@ class ChatScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               var message = messages[index];
               var timestamp = message['timestamp'] as Timestamp?;
-              return ListTile(
-                title: Text(message['text']),
-                subtitle: Text(_formatTimestamp(timestamp)),
+              bool isMe = message['sender'] == userId;
+
+              return Align(
+                alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  decoration: BoxDecoration(
+                    color: isMe ? Colors.blue[100] : Colors.grey[300],
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        message['text'],
+                        style: TextStyle(
+                          color: isMe ? Colors.black : Colors.black87,
+                        ),
+                      ),
+                      SizedBox(height: 5.0),
+                      Text(
+                        _formatTimestamp(timestamp),
+                        style: TextStyle(
+                          color: isMe ? Colors.black : Colors.black54,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               );
             },
           );
@@ -69,15 +101,31 @@ class ChatScreen extends StatelessWidget {
     );
   }
 
-  void _sendMessage(String text) {
-    FirebaseFirestore.instance
+  void _sendMessage(String text) async {
+    var messageRef = FirebaseFirestore.instance
         .collection('chats')
         .doc(chatId)
         .collection('messages')
-        .add({
+        .doc();
+
+    var message = {
+      'sender': userId,
       'text': text,
       'timestamp': FieldValue.serverTimestamp(),
+    };
+
+    var chatRef = FirebaseFirestore.instance.collection('chats').doc(chatId);
+
+    // Perform the write operations in a batch
+    var batch = FirebaseFirestore.instance.batch();
+
+    batch.set(messageRef, message);
+    batch.update(chatRef, {
+      'lastMessage': text,
+      'timestamp': FieldValue.serverTimestamp(),
     });
+
+    await batch.commit();
   }
 
   String _formatTimestamp(Timestamp? timestamp) {
