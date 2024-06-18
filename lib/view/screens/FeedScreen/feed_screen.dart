@@ -179,10 +179,34 @@ class FeedScreen extends StatelessWidget {
                                                     builder: (context, userPostSnapshot) {
                                                       if (userPostSnapshot.connectionState == ConnectionState.waiting) {
                                                         return CircularProgressIndicator();
-                                                      }
-                                                       else if (userPostSnapshot.data == true) {
+                                                      } else if (userPostSnapshot.data == true) {
                                                         return IconButton(
-                                                          onPressed: () => feedController.deletePost(post.id),
+                                                          onPressed: () {
+                                                            showDialog(
+                                                              context: context,
+                                                              builder: (BuildContext context) {
+                                                                return AlertDialog(
+                                                                  title: Text("Konfirmasi"),
+                                                                  content: Text("Apakah Anda yakin ingin menghapus post?"),
+                                                                  actions: <Widget>[
+                                                                    TextButton(
+                                                                      child: Text("No"),
+                                                                      onPressed: () {
+                                                                        Navigator.of(context).pop();
+                                                                      },
+                                                                    ),
+                                                                    TextButton(
+                                                                      child: Text("Yes"),
+                                                                      onPressed: () {
+                                                                        feedController.deletePost(post.id);
+                                                                        Navigator.of(context).pop();
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          },
                                                           icon: const Icon(Icons.delete),
                                                         );
                                                       } else {
