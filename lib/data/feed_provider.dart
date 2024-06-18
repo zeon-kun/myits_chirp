@@ -26,7 +26,12 @@ class StoryProvider with ChangeNotifier {
   Future<void> fetchAndSetStories() async {
     final snapshot = await _firestore.collection('stories').get();
     final List<StoryItem> firestoreStories = snapshot.docs.map((doc) {
+      // final imageBytes = await _image!.readAsBytes();
+      // final imageString = base64Encode(imageBytes);
+      // final imageBytes =  base64Decode(doc.data()["getImage"]);
+      // final image = Image.memory(imageBytes);
 
+      // doc.data()["imagePath"] = image;
       return StoryItem.fromJson(doc.data() as Map<String, dynamic>);
     }).toList();
     _stories = firestoreStories;

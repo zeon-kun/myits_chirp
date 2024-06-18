@@ -21,7 +21,6 @@ import 'package:wave/view/reusable_components/single_comment_box.dart';
 
 class ListCommentsScreen extends StatefulWidget {
   const ListCommentsScreen({super.key});
-
   @override
   State<ListCommentsScreen> createState() => _ListCommentsScreenState();
 }
@@ -31,6 +30,7 @@ class _ListCommentsScreenState extends State<ListCommentsScreen> {
   int commentLimit = 20;
   TextEditingController commentController = TextEditingController();
   @override
+
   void initState() {
     // TODO: implement initState
     super.initState();

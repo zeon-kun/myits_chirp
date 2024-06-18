@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _FeedViewScreenState extends State<FeedViewScreen> {
             padding: const EdgeInsets.all(10.0),
             itemCount: storyProvider.stories.length,
             itemBuilder: (ctx, i) => GridTile(
-              child: Image.file(File(storyProvider.stories[i].imagePath)),
+              child: Image.memory(base64Decode(storyProvider.stories[i].image)),
               footer: GridTileBar(
                 backgroundColor: Colors.black54,
                 title: Text(storyProvider.stories[i].title),
