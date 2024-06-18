@@ -1,9 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
+// import 'package:wave/view/screens/FeedScreen/feed_post_screen.dart';
 
 import '../../../data/feed_provider.dart';
+import '../../../utils/routing.dart';
 
 class FeedViewScreen extends StatefulWidget {
   const FeedViewScreen ({super.key});
@@ -25,6 +30,7 @@ class _FeedViewScreenState extends State<FeedViewScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My ITS Chirp Stories'),
+        backgroundColor: Colors.blue[800],
       ),
       body: FutureBuilder(
         future: Provider.of<StoryProvider>(context, listen: false).fetchAndSetStories(),
@@ -36,16 +42,27 @@ class _FeedViewScreenState extends State<FeedViewScreen> {
             padding: const EdgeInsets.all(10.0),
             itemCount: storyProvider.stories.length,
             itemBuilder: (ctx, i) => GridTile(
-              child: Image.file(File(storyProvider.stories[i].imagePath)),
+              child: Image.memory(base64Decode(storyProvider.stories[i].image)),
               footer: GridTileBar(
                 backgroundColor: Colors.black54,
                 title: Text(storyProvider.stories[i].title),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    Provider.of<StoryProvider>(context, listen: false)
-                        .deleteStory(storyProvider.stories[i].id);
-                  },
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.comment),
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.listCommentsScreen);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        Provider.of<StoryProvider>(context, listen: false)
+                            .deleteStory(storyProvider.stories[i].id);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -58,9 +75,9 @@ class _FeedViewScreenState extends State<FeedViewScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigator.of(context).pushNamed(FeedViewScreen.routeName);
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Get.toNamed(AppRoutes.feedPostScreen);
         },
         child: Icon(Icons.add),
       ),
