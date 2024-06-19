@@ -1,18 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Space {
-  String id;
-  String name;
-  String description;
-  List<String> followers; // Change to List<String>
-  Timestamp timestamp;
+  final String id;
+  final String name;
+  final String description;
+  final List<String> followers; // Ensure followers is of type List<String>
 
   Space({
     required this.id,
     required this.name,
     required this.description,
     required this.followers,
-    required this.timestamp,
   });
 
   factory Space.fromDocument(DocumentSnapshot doc) {
@@ -21,17 +19,7 @@ class Space {
       id: doc.id,
       name: data['space'] ?? '',
       description: data['space_desc'] ?? '',
-      followers: List<String>.from(data['followers']), // Change to List<String>
-      timestamp: data['timestamp'] ?? Timestamp.now(),
+      followers: List<String>.from(data['followers'] ?? []), // Ensure followers is parsed as List<String>
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'space': name,
-      'space_desc': description,
-      'followers': followers,
-      'timestamp': timestamp,
-    };
   }
 }

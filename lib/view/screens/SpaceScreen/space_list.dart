@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import '../../../services/space_services.dart';
-import 'space_form.dart';
 import '../../../models/space_model.dart';
+import 'space_form.dart';
 import 'space_detail_screen.dart';
+import 'package:wave/controllers/HomeNavController/home_nav_controller.dart';
 
 class SpaceListScreen extends StatelessWidget {
   @override
@@ -54,10 +55,10 @@ class SpaceListScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    onTap: () => showModalBottomSheet(
-                      context: context,
-                      builder: (context) => SpaceDetailScreen(spaceId: space.id),
-                    ),
+                    onTap: () {
+                      Provider.of<HomeNavController>(context, listen: false)
+                          .showDetailScreen(space.id);
+                    },
                   );
                 },
               );

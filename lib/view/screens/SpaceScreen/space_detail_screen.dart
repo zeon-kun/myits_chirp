@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../services/space_services.dart';
 import '../../../models/space_model.dart';
-import 'follower_list_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:wave/controllers/HomeNavController/home_nav_controller.dart';
 
 class SpaceDetailScreen extends StatefulWidget {
   final String spaceId;
-  
+
   SpaceDetailScreen({required this.spaceId});
 
   @override
@@ -41,6 +41,7 @@ class _SpaceDetailScreenState extends State<SpaceDetailScreen> {
           }
 
           if (snapshot.hasError) {
+            debugPrint('Error: ${snapshot.error}');
             return const Center(child: Text('Error loading space'));
           }
 
@@ -85,12 +86,9 @@ class _SpaceDetailScreenState extends State<SpaceDetailScreen> {
                   ],
                 ),
               ),
-              // GestureDetector for navigating to the follower list screen
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => FollowerListScreen(spaceId: space.id),
-                  ));
+                  context.read<HomeNavController>().showFollowerScreen(space.id);
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
