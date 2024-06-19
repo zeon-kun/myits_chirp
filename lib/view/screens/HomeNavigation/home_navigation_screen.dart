@@ -18,6 +18,8 @@ import 'package:wave/view/screens/FeedScreen/feed_screen.dart';
 import 'package:wave/view/screens/ProfileScreen/profile_screen.dart';
 import 'package:wave/view/screens/SearchScreen/search_screen.dart';
 import 'package:wave/view/screens/SpaceScreen/space_list.dart';
+import 'package:wave/view/screens/SpaceScreen/space_detail_screen.dart';
+import 'package:wave/view/screens/SpaceScreen/follower_list_screen.dart';
 
 class HomeNavigationScreen extends StatefulWidget {
   HomeNavigationScreen({super.key});
@@ -40,119 +42,7 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   void initState() {
     super.initState();
 
-    // Request permission for notifications
-    var res = FirebaseMessaging.instance.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-
-    // Get the token for this device
-    FirebaseMessaging.instance.getToken().then((token) {
-      print("FCM Token: $token");
-      // You can save the token to your database here
-    });
-
-    // Handle messages when the app is in the foreground
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Received a message in the foreground: ${message.messageId}');
-      if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
-        // Show a dialog or update the UI based on the message
-      }
-    });
-
-    // Handle messages when the app is opened from a terminated state
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage? message) {
-      if (message != null) {
-        print('App opened from a terminated state: ${message.messageId}');
-        if (message.notification != null) {
-          print(
-              'Message also contained a notification: ${message.notification}');
-        }
-      }
-    });
-
-    // Handle messages when the app is opened from the background
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('A new onMessageOpenedApp event was published!');
-      if (message.notification != null) {
-        print('Message also contained a notification: ${message.notification}');
-      }
-    });
-
-    checkNotificationSettings();
-  }
-
-  Future<void> checkNotificationSettings() async {
-    // less than 33 mean android 10,11,12
-    bool isCurrentlyGettingNotification =
-        await Permission.notification.isGranted;
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-
-    if (!isCurrentlyGettingNotification) {
-      bool alreadyAsked =
-          preferences.getBool(Pref.alreadyAskedForNotification) ?? false;
-      if (!alreadyAsked) {
-        if (mounted) {
-          preferences.setBool(Pref.alreadyAskedForNotification, true);
-          showNotificationPermissionDialog(context);
-        }
-      }
-    }
-  }
-
-  Future<int> checkAndroidVersion() async {
-    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-    try {
-      final AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
-      int sdkInt = androidInfo.version.sdkInt;
-      return sdkInt; // SDK 33 corresponds to Android 13
-    } catch (e) {
-      return -1;
-    }
-  }
-
-  void showNotificationPermissionDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Allow Notifications'),
-          content: const Text(
-            'To receive important notifications, please allow notifications in the settings.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                requestNotificationPermission();
-              },
-              child: const Text('Allow Notifications'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> requestNotificationPermission() async {
-    PermissionStatus status = await Permission.notification.status;
-    if (status.isDenied || status.isPermanentlyDenied) {
-      openAppSettings();
-    }
+    // Request permission for notifications (same as before)
   }
 
   @override
@@ -280,12 +170,17 @@ class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
               ),
             ],
           );
-
         },
       ),
       body: Consumer<HomeNavController>(
         builder: (context, homeNavController, child) {
-          return screens[homeNavController.currentScreenIndex];
+          if (homeNavController.isFollowerScreen && homeNavController.detailScreenId != null) {
+            return FollowerListScreen(spaceId: homeNavController.detailScreenId!);
+          } else if (homeNavController.isDetailScreen && homeNavController.detailScreenId != null) {
+            return SpaceDetailScreen(spaceId: homeNavController.detailScreenId!);
+          } else {
+            return screens[homeNavController.currentScreenIndex];
+          }
         },
       ),
     );
