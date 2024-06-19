@@ -25,11 +25,42 @@ class ChatService {
     });
   }
 
-  Future<QuerySnapshot> checkIfChatExists(String otherUserId) {
-    return _db
+  Future<List<QueryDocumentSnapshot>> checkIfChatExists(
+      String otherUserId, String userId) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('chats')
         .where('participant', arrayContains: otherUserId)
         .get();
+
+    // Filter the results to include only those that also contain `userId`
+    List<QueryDocumentSnapshot> filteredChats = querySnapshot.docs.where((doc) {
+      List<dynamic> participants = doc['participant'];
+      return participants.contains(userId);
+    }).toList();
+
+    return filteredChats;
+  }
+
+  Future<void> deleteChat(String chatId) async {
+    // Deleting the chat document and all its subcollections (messages)
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    // Reference to the chat document
+    DocumentReference chatDocRef =
+        FirebaseFirestore.instance.collection('chats').doc(chatId);
+
+    // Adding the deletion of the chat document to the batch
+    batch.delete(chatDocRef);
+
+    // Deleting all messages in the chat
+    QuerySnapshot messagesSnapshot =
+        await chatDocRef.collection('messages').get();
+    for (DocumentSnapshot doc in messagesSnapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    // Committing the batch
+    await batch.commit();
   }
 }
 
