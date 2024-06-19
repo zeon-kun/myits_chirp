@@ -7,10 +7,12 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:label="wave"
+        android:label="MyITS Chirp"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon"
+        tools:replace="android:icon">
+        
 
         <!-- MainActivity -->
         <activity

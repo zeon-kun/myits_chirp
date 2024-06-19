@@ -1,4 +1,4 @@
-class CustomLogo{
-  static String primaryLogo = "assets/logo/primaryLogo.png";
-static String logo = "assets/logo/logo.png";
+class CustomLogo {
+  static String primaryLogo = "assets/logo/chirp_logo.png";
+  static String logo = "assets/logo/chirp_logo.png";
 }
