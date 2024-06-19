@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wave/controllers/Authentication/user_controller.dart';
 import 'package:wave/data/notification_data.dart';
+import 'package:wave/data/users_data.dart';
 import 'package:wave/models/response_model.dart';
 import 'package:wave/models/user_model.dart';
 import 'package:wave/utils/constants/custom_colors.dart';
@@ -275,11 +276,12 @@ class _OtherProfileState extends State<OtherProfile> {
                       MaterialButton(
                         height: displayHeight(context) * 0.045,
                         onPressed: () async {
-                          QuerySnapshot snapshot = await _chatService
-                              .checkIfChatExists(otherUser.id);
-                          if (snapshot.docs.isNotEmpty) {
+                          List<QueryDocumentSnapshot> snapshot =
+                              await _chatService.checkIfChatExists(
+                                  otherUser.id, userDataController.user!.id);
+                          if (snapshot.isNotEmpty) {
                             // Chat exists, navigate to ChatScreen
-                            var chatDoc = snapshot.docs.first;
+                            var chatDoc = snapshot.first;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -292,7 +294,7 @@ class _OtherProfileState extends State<OtherProfile> {
                           } else {
                             // Chat does not exist, create a new chat
                             String chatname =
-                                '${otherUser.name} with ${userDataController.user!.name}';
+                                '${otherUser.name} - ${userDataController.user!.name}';
                             await _chatService.addChat(
                                 chatname,
                                 otherUser.id,

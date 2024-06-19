@@ -44,12 +44,31 @@ class ChatListScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  onLongPress: () {
+                    _showDeleteOption(context, chat);
+                  },
                 );
               },
             );
           }
         },
       ),
+    );
+  }
+
+  void _showDeleteOption(BuildContext context, Chat chat) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return ListTile(
+          leading: Icon(Icons.delete),
+          title: Text('Delete Chat'),
+          onTap: () async {
+            Navigator.pop(context); // Close the bottom sheet
+            await _chatService.deleteChat(chat.id);
+          },
+        );
+      },
     );
   }
 

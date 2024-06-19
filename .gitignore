@@ -32,7 +32,7 @@ node_modules/
 .pub/
 /build/
 .gradle/
-
+/node_modules/
 # Web related
 lib/generated_plugin_registrant.dart
 lib/utils/Encrypt_Message.dart

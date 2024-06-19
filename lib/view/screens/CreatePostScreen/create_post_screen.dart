@@ -15,10 +15,16 @@ import 'package:wave/utils/device_size.dart';
 import 'package:wave/utils/enums.dart';
 import 'package:wave/utils/routing.dart';
 
-class CreatePostScreen extends StatelessWidget {
+class CreatePostScreen extends StatefulWidget {
   CreatePostScreen({super.key});
 
+  @override
+  State<CreatePostScreen> createState() => _CreatePostScreenState();
+}
+
+class _CreatePostScreenState extends State<CreatePostScreen> {
   TextEditingController captionController = TextEditingController();
+
   final FocusNode focusNode = FocusNode();
 
   List<User> mentionedUsers = [];
@@ -78,8 +84,14 @@ class CreatePostScreen extends StatelessWidget {
                                   color: Colors.grey,
                                   fontSize: 14),
                               border: InputBorder.none,
+                              errorText: captionController.text.isEmpty ? 'Caption cannot be empty' : null,
                               hintText: "What's happening?"),
+                          onChanged: (text) {
+
+                            setState(() {});
+                          },
                         ),
+
                       ),
                       const SizedBox(
                         height: 15,
@@ -93,7 +105,7 @@ class CreatePostScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             height: displayHeight(context) * 0.06,
-                            onPressed: () async {
+                            onPressed: captionController.text.isNotEmpty ? () async {
                               final res = await postController.createNewPost(
                                   userId:
                                       fb.FirebaseAuth.instance.currentUser!.uid,
@@ -131,7 +143,7 @@ class CreatePostScreen extends StatelessWidget {
                                   message: res.response.message.toString(),
                                 ));
                               }
-                            },
+                            } :null,
                             color: CustomColor.primaryColor,
                             child: (postController.create_post ==
                                     CREATE_POST.CREATING)
@@ -146,7 +158,7 @@ class CreatePostScreen extends StatelessWidget {
                                       Image.asset(
                                         CustomIcon.addPostIcon,
                                         height: 15,
-                                        color: Colors.white,
+                                        color: Colors.blueAccent,
                                       ),
                                       const SizedBox(
                                         width: 10,
